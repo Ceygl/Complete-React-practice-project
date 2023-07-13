@@ -1,5 +1,5 @@
 import Header from './components/Header';
-import Table from './components/Table';
+import Table from './components/TableComp/Table';
 import Form from './components/Form';
 
 function App() {
