@@ -36,7 +36,7 @@ function App() {
     <div>
       <Header />
       <Form onCalculate={calculateHandler} />
-      {!formData && <p>No investment found to calculate!</p>}
+      {!formData && <p style={{textAlign: "center"}}>No investment found to calculate!</p>}
       {formData && <Table data={yearlyData} initialInvestment={formData['current-savings']}/>}
     </div>
   );

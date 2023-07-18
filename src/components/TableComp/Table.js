@@ -1,4 +1,4 @@
-import TableHead from '../TableComp/TableHead';
+import classes from "./Table.module.css";
 
 const formatter = new Intl.NumberFormat("en-US", {
     style: "currency",
@@ -8,8 +8,16 @@ const formatter = new Intl.NumberFormat("en-US", {
 });
 const Table = (props) => {
     return (
-        <table className="result">
-            <TableHead />
+        <table className={classes.table}>
+            <thead>
+                <tr>
+                    <th>Year</th>
+                    <th>Total Savings</th>
+                    <th>Interest (Year)</th>
+                    <th>Total Interest</th>
+                    <th>Invested Capital</th>
+                </tr>
+            </thead>
             <tbody>
                 {props.data.map((yearData) => (
                     <tr key={yearData.year}>

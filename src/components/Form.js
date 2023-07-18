@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import classes from "./Form.module.css";
 
 const initialFormData = {
     'current-savings': 10000,
@@ -20,58 +21,59 @@ const Form = (props) => {
         setFormData(initialFormData);
     };
     const changeHandler = (input, value) => {
-        setFormData((prevData) => ({
-            ...prevData,
-            [input]: value,
-        }));
-    };
+        setFormData((prevData) => {
+            return {
+                ...prevData,
+                [input]: +value,
+    }});
+};
 
 
-    return (
-        <form className="form" onSubmit={submitHandler}>
-            <div className="input-group">
-                <p>
-                    <label htmlFor="current-savings">Current Savings ($)</label>
-                    <input onChange={(event) => changeHandler('current-savings', event.target.value)} 
+return (
+    <form className={classes.form} onSubmit={submitHandler}>
+        <div className={classes["input-group"]}>
+            <p>
+                <label htmlFor="current-savings">Current Savings ($)</label>
+                <input onChange={(event) => changeHandler('current-savings', event.target.value)}
                     value={formData["current-savings"]}
-                    type="number" 
+                    type="number"
                     id="current-savings" />
-                </p>
-                <p>
-                    <label htmlFor="yearly-contribution">Yearly Savings ($)</label>
-                    <input onChange={(event) => changeHandler('yearly-contribution', event.target.value)}
+            </p>
+            <p>
+                <label htmlFor="yearly-contribution">Yearly Savings ($)</label>
+                <input onChange={(event) => changeHandler('yearly-contribution', event.target.value)}
                     value={formData["yearly-contribution"]}
-                    type="number" 
+                    type="number"
                     id="yearly-contribution" />
-                </p>
-            </div>
-            <div className="input-group">
-                <p>
-                    <label htmlFor="expected-return">
-                        Expected Interest (%, per year)
-                    </label>
-                    <input onChange={(event) => changeHandler('expected-return', event.target.value)} value={formData["expected-return"]} type="number" id="expected-return" />
-                </p>
-                <p>
-                    <label htmlFor="duration">Investment Duration (years)</label>
-                    <input onChange={(event) => changeHandler('duration', event.target.value)} 
+            </p>
+        </div>
+        <div className={classes["input-group"]}>
+            <p>
+                <label htmlFor="expected-return">
+                    Expected Interest (%, per year)
+                </label>
+                <input onChange={(event) => changeHandler('expected-return', event.target.value)} value={formData["expected-return"]} type="number" id="expected-return" />
+            </p>
+            <p>
+                <label htmlFor="duration">Investment Duration (years)</label>
+                <input onChange={(event) => changeHandler('duration', event.target.value)}
                     value={formData['duration']}
-                    type="number" 
+                    type="number"
                     id="duration" />
-                </p>
-            </div>
-            <p className="actions">
-                <button type="reset" className="buttonAlt" onClick={resetHandler}>
+            </p>
+        </div>
+        <p className={classes["actions"]}>
+            <button type="reset" className={classes["buttonAlt"]} onClick={resetHandler}>
                 Reset
             </button>
-            <button type="submit" className="button" onSubmit={submitHandler}>
+            <button type="submit" className={classes["button"]} onSubmit={submitHandler}>
                 Calculate
             </button>
-            </p>
-            
+        </p>
 
-        </form>
-    )
+
+    </form>
+)
 }
 
 export default Form;
