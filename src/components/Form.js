@@ -1,12 +1,29 @@
 import React, { useState } from 'react';
 
-const Form = () => {
+const initialFormData = {
+    'current-savings': 10000,
+    'yearly-contribution': 1200,
+    'expected-return': 7,
+    'duration': 10,
+};
+
+const Form = (props) => {
+
+    const [formData, setFormData] = useState(initialFormData);
 
     const submitHandler = (event) => {
         event.preventDefault();
+        props.onCalculate(formData);
     };
+
     const resetHandler = () => {
-        
+        setFormData(initialFormData);
+    };
+    const changeHandler = (input, value) => {
+        setFormData((prevData) => ({
+            ...prevData,
+            [input]: value,
+        }));
     };
 
 
@@ -15,11 +32,17 @@ const Form = () => {
             <div className="input-group">
                 <p>
                     <label htmlFor="current-savings">Current Savings ($)</label>
-                    <input type="number" id="current-savings" />
+                    <input onChange={(event) => changeHandler('current-savings', event.target.value)} 
+                    value={formData["current-savings"]}
+                    type="number" 
+                    id="current-savings" />
                 </p>
                 <p>
                     <label htmlFor="yearly-contribution">Yearly Savings ($)</label>
-                    <input type="number" id="yearly-contribution" />
+                    <input onChange={(event) => changeHandler('yearly-contribution', event.target.value)}
+                    value={formData["yearly-contribution"]}
+                    type="number" 
+                    id="yearly-contribution" />
                 </p>
             </div>
             <div className="input-group">
@@ -27,11 +50,14 @@ const Form = () => {
                     <label htmlFor="expected-return">
                         Expected Interest (%, per year)
                     </label>
-                    <input type="number" id="expected-return" />
+                    <input onChange={(event) => changeHandler('expected-return', event.target.value)} value={formData["expected-return"]} type="number" id="expected-return" />
                 </p>
                 <p>
                     <label htmlFor="duration">Investment Duration (years)</label>
-                    <input type="number" id="duration" />
+                    <input onChange={(event) => changeHandler('duration', event.target.value)} 
+                    value={formData['duration']}
+                    type="number" 
+                    id="duration" />
                 </p>
             </div>
             <p className="actions">
