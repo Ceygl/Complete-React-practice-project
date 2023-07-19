@@ -1,3 +1,3 @@
-This project was created to calculate investment data according to the given information.
+This react project was created to calculate investment data according to the given information.
 
-# Complete-React-practice-project
+# Investment-Calculator # Complete-React-project
